@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Student List</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <h1>Student List</h1>
+
+    <div>
+      <form type="submit" id="studentForm">
+        <label for="firstName">FirstName</label>
+        <input type="text" id="firstName" name="firstName" />
+        <label for="lastName">LastName</label>
+        <input type="text" id="lastName" name="lastName" />
+        <label for="email">email</label>
+        <input type="text" id="email" name="email" />
+        <input
+          type="radio"
+          id="male"
+          name="gender"
+          value="male"
+          class="radioInput"
+        />
+          <label for="male">Male</label>    
+        <input
+          type="radio"
+          id="female"
+          name="gender"
+          value="female"
+          class="radioInput"
+        />
+          <label for="female">Female</label>          
+        <button type="submit" id="addStudentBtn">Add New Student</button>
+      </form>
+
+      <ul id="studentList"></ul>
+    </div>
+
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"
+      integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+    <script>
+      $(function () {
+        let studentData = [
+          {
+            id: 1,
+            firstName: "Ali",
+            lastName: "Yılmaz",
+            gender: "Male",
+            email: "ali.yilmaz@example.com",
+          },
+          {
+            id: 2,
+            firstName: "Zeynep",
+            lastName: "Kara",
+            gender: "Female",
+            email: "zeynep.kara@example.com",
+          },
+          {
+            id: 3,
+            firstName: "Mehmet",
+            lastName: "Demir",
+            gender: "Male",
+            email: "mehmet.demir@example.com",
+          },
+        ];
+        const studentList = $("#studentList");
+        $("#studentForm").submit(function (e) {
+          e.preventDefault();
+          const firstName = $("#firstName").val();
+          const lastName = $("#lastName").val();
+          const email = $("#email").val();
+          const gender = $("input[name='gender']:checked").val();
+          const newStudent = {
+            id: studentData.length + 1,
+            firstName,
+            lastName,
+            gender,
+            email,
+          };
+
+          studentData = [newStudent, ...studentData];
+
+          renderList();
+          $("#studentForm")[0].reset();
+        });
+
+        function renderList() {
+          studentList.empty();
+          let studentListHtml = null;
+          for (let student of studentData) {
+            studentListHtml = `
+                   <li class="list-item">
+                    <p>${student.firstName} ${student.lastName}</p>
+                    <p>${student.email}</p>
+                    <p>${student.gender}</p>
+                    <button class="deleteBtn" data-id=${student.id}>Sil</button>
+               </li>
+                  `;
+            studentList.append(studentListHtml);
+          }
+        }
+        renderList();
+
+        studentList.on("click", ".list-item", function () {
+          $(this).toggleClass("changeColor");
+        });
+
+        studentList.on("click", ".deleteBtn", function () {
+          const studentId = $(this).data("id");
+          studentData = studentData.filter(
+            (student) => student.id !== studentId
+          );
+          renderList();
+        });
+      });
+    </script>
+  </body>
+</html>
