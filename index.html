@@ -7,36 +7,111 @@
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
+    <!-- Page Title -->
     <h1>Student List</h1>
 
-    <div>
+    <!-- App Content -->
+    <div class="container">
+      <!-- Form Field -->
       <form type="submit" id="studentForm">
-        <label for="firstName">FirstName</label>
-        <input type="text" id="firstName" name="firstName" />
-        <label for="lastName">LastName</label>
-        <input type="text" id="lastName" name="lastName" />
-        <label for="email">email</label>
-        <input type="text" id="email" name="email" />
-        <input
-          type="radio"
-          id="male"
-          name="gender"
-          value="male"
-          class="radioInput"
-        />
-          <label for="male">Male</label>    
-        <input
-          type="radio"
-          id="female"
-          name="gender"
-          value="female"
-          class="radioInput"
-        />
-          <label for="female">Female</label>          
-        <button type="submit" id="addStudentBtn">Add New Student</button>
+      
+        <div class="form-content">
+          <div class="form-item">
+            <label for="name">Firstname</label>
+            <input
+              type="text"
+              id="firstName"
+              name="firstName"
+              placeholder="Enter Firstname"
+              required
+            />
+          </div>
+
+          <div class="form-item">
+            <label for="lastName">Lastname</label>
+            <input
+              type="text"
+              id="lastName"
+              name="lastName"
+              placeholder="Enter Lastname"
+              required
+            />
+          </div>
+        </div>
+
+        <div class="form-content">
+          <div class="form-item">
+            <label for="email">E-Mail</label>
+            <input
+              type="email"
+              id="email"
+              name="email"
+              placeholder="Enter E-Mail"
+              required
+            />
+          </div>
+        </div>
+        <div class="form-content">
+          <div class="form-item">
+            <label for="classNo">Class No (e.g. 10)</label>
+            <input
+              type="number"
+              id="classNo"
+              name="classNo"
+              placeholder="Enter Class No "
+              min="1"
+              max="12"
+              required
+            />
+          </div>
+
+          <div class="form-item">
+            <label for="section">Section (e.g. A)</label>
+            <select id="section" name="section" required>
+              <option value="">Select section</option>
+              <option value="A">A</option>
+              <option value="B">B</option>
+              <option value="C">C</option>
+              <option value="D">D</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-gender">
+          <p>Select Gender:</p>
+          <input
+            type="radio"
+            id="male"
+            name="gender"
+            value="Male"
+            class="radioInput"
+          />
+          <label for="male">Male</label>    
+          <input
+            type="radio"
+            id="female"
+            name="gender"
+            value="Female"
+            class="radioInput"
+          />
+          <label for="female">Female</label>          
+        </div>
+        <button type="submit" id="addStudentBtn">Add Student</button>
       </form>
 
-      <ul id="studentList"></ul>
+      <!-- Table Field -->
+      <table border="1">
+        <thead>
+          <tr>
+            <th>Firstname</th>
+            <th>Lastname</th>
+            <th>E-Mail</th>
+            <th>Gender</th>
+            <th>Class</th>
+            <th>Delete</th>
+          </tr>
+        </thead>
+        <tbody id="studentTableBody"></tbody>
+      </table>
     </div>
 
     <script
@@ -45,81 +120,6 @@
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     ></script>
-    <script>
-      $(function () {
-        let studentData = [
-          {
-            id: 1,
-            firstName: "Ali",
-            lastName: "Yılmaz",
-            gender: "Male",
-            email: "ali.yilmaz@example.com",
-          },
-          {
-            id: 2,
-            firstName: "Zeynep",
-            lastName: "Kara",
-            gender: "Female",
-            email: "zeynep.kara@example.com",
-          },
-          {
-            id: 3,
-            firstName: "Mehmet",
-            lastName: "Demir",
-            gender: "Male",
-            email: "mehmet.demir@example.com",
-          },
-        ];
-        const studentList = $("#studentList");
-        $("#studentForm").submit(function (e) {
-          e.preventDefault();
-          const firstName = $("#firstName").val();
-          const lastName = $("#lastName").val();
-          const email = $("#email").val();
-          const gender = $("input[name='gender']:checked").val();
-          const newStudent = {
-            id: studentData.length + 1,
-            firstName,
-            lastName,
-            gender,
-            email,
-          };
-
-          studentData = [newStudent, ...studentData];
-
-          renderList();
-          $("#studentForm")[0].reset();
-        });
-
-        function renderList() {
-          studentList.empty();
-          let studentListHtml = null;
-          for (let student of studentData) {
-            studentListHtml = `
-                   <li class="list-item">
-                    <p>${student.firstName} ${student.lastName}</p>
-                    <p>${student.email}</p>
-                    <p>${student.gender}</p>
-                    <button class="deleteBtn" data-id=${student.id}>Sil</button>
-               </li>
-                  `;
-            studentList.append(studentListHtml);
-          }
-        }
-        renderList();
-
-        studentList.on("click", ".list-item", function () {
-          $(this).toggleClass("changeColor");
-        });
-
-        studentList.on("click", ".deleteBtn", function () {
-          const studentId = $(this).data("id");
-          studentData = studentData.filter(
-            (student) => student.id !== studentId
-          );
-          renderList();
-        });
-      });
-    </script>
+    <script src="script.js"></script>
   </body>
 </html>

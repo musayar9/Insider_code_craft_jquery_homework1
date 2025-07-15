@@ -1,20 +1,44 @@
+*,
+::after,
+::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Font-size 16px was given in html for responsive design */
+html {
+  font-size: 16px;
+}
+
+/* css variables */
 :root {
-  --clr-black: #000000;
-  --clr-grey-5: #617d98;
-  --clr-grey-10: #e2e8f0;
-  --clr-grey-15: #f1f5f8;
-  --clr-white: #fff;
-  --clr-red-dark: rgb(188 26 69 / 1);
-  --spacing: 0.25rem;
-  --radius: 0.5rem;
-  --font-weight-4: 400;
-  --font-weight-5: 500;
-  --font-weight-6: 600;
-  --font-weight-7: 700;
+  --grey-50: #f8fafc;
+  --grey-100: #f1f5f9;
+  --grey-200: #e2e8f0;
+  --grey-300: #cbd5e1;
+  --grey-400: #94a3b8;
+  --grey-500: #64748b;
+  --grey-600: #475569;
+  --grey-700: #334155;
+
+  --primary-50: #a29dff;
+  --primary-100: #645cff;
+  --primary-200: #4f39f6;
+
+  --red-50: #ff637e;
+  --red-100: #c60036;
+
+  --black: #222;
+  --white: #ffffff;
+
+  --backgroundColor: var(--grey-50);
+  --borderRadius-50: 0.6rem;
+  --borderRadius-100: 1rem;
   --letterSpacing: 1px;
   --transition: 0.3s ease-in-out all;
   --max-width: 1120px;
-  --fixed-width: 400px;
+  --fixed-width: 650px;
   --view-width: 90vw;
 
   --shadow-1: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
@@ -26,56 +50,196 @@
     0 10px 10px -5px rgba(0, 0, 0, 0.04);
 }
 
-/* Tüm elementler için varsayılan stil ayarlandı */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-html {
-  font-size: 16px;
-  scroll-behavior: smooth;
-}
-
-/* body etiketi için uygulama ekranı ortasına gelecek şekilde hizlandı */
 body {
+  background: var(--backgroundColor);
   font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
     Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
-  background: var(--clr-white);
-  
-  line-height: 1;
+  font-weight: 400;
+  color: var(--textColor);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  margin: 20px auto;
+  gap: 3rem;
 }
-a {
-  text-decoration: none;
-  color: var(--clr-white);
-}
-img {
-  width: 100%;
-  display: block;
+p {
+  margin: 0;
 }
 h1,
 h2,
 h3,
-h4 {
-  letter-spacing: var(--spacing);
+h4,
+h5 {
+  margin: 0;
+  font-weight: 400;
+  line-height: 1;
   text-transform: capitalize;
-  line-height: 1.25;
-  margin-bottom: 0.75rem;
-}
-h1 {
-  font-size: 4rem;
-}
-h2 {
-  font-size: 3rem;
-}
-h3 {
-  font-size: 1.5rem;
-}
-h4 {
-  font-size: 0.875rem;
+  letter-spacing: var(--letterSpacing);
 }
 
+ul {
+  list-style: none;
+}
+/* Page Title */
+h1 {
+  font-weight: 600;
+  font-size: 3rem;
+  padding: 5px;
+  color: var(--grey-600);
+}
+
+
+/* App Content */
+.container {
+  width: var(--view-width);
+  max-width: var(--fixed-width);
+  gap: 2rem;
+}
+
+/* Form Field */
+.container form {
+  background-color: var(--white);
+  padding: 1rem 2rem;
+  box-shadow: var(--shadow-2);
+  border-radius: var(--borderRadius-50);
+}
+
+form .form-content {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin: 1rem 0;
+}
+.form-content .form-item {
+  display: flex;
+  flex-direction: column;
+
+  gap: 0.3rem;
+  width: 100%;
+}
+.form-content .form-item label {
+  color: var(--grey-600);
+  font-weight: 500;
+}
+
+#firstName, #lastName{
+text-transform: capitalize;
+}
+
+.form-content .form-item input, select {
+  padding: 0.625rem;
+  border: 1px solid var(--grey-100);
+  border-radius: var(--borderRadius-50);
+  box-shadow: var(--shadow-1);
+}
+
+.form-content .form-item input:focus, select:focus {
+  border: 2px solid var(--primary-50);
+  outline: none;
+}
+
+form .form-gender {
+  display: flex;
+  align-items: center;
+  gap: 0.2rem;
+  color: var(--grey-600);
+}
+
+form .form-gender p {
+  margin-right: 0.4rem;
+  font-weight: 500;
+}
+/* Add Button Style */
+#addStudentBtn {
+  margin-top: 1rem;
+  width: 100%;
+  border: none;
+  padding: 0.625rem;
+  border-radius: var(--borderRadius-50);
+  background-color: var(--primary-100);
+  color: var(--white);
+  box-shadow: var(--shadow-1);
+  transition: var(--transition);
+  cursor: pointer;
+}
+/* Table Style */
+table {
+  margin-top: 2rem;
+  width: 100%;
+  border-collapse: collapse;
+  background-color: var(--white);
+  box-shadow: var(--shadow-2);
+  border-radius: var(--borderRadius-50);
+  overflow: hidden;
+  font-size: 0.875rem;
+  border-color: var(--grey-300);
+}
+
+thead {
+  background-color: var(--primary-100);
+  color: var(--white);
+  text-align: left;
+}
+
+thead th {
+  padding: 0.75rem 1rem;
+  letter-spacing: var(--letterSpacing);
+  font-weight: 500;
+}
+
+tbody td {
+  padding: 0.75rem 1rem;
+  border-bottom: 1px solid var(--grey-200);
+  color: var(--grey-700);
+  cursor: pointer;
+}
+
+
+
 .changeColor {
-  color: red;
+  background-color: var(--primary-50);
+
+}
+
+tbody tr:hover {
+  background-color: var(--grey-50);
+  transition: var(--transition);
+}
+
+tbody tr:last-child td {
+  border-bottom: none;
+}
+
+th,
+td {
+  text-align: left;
+}
+
+/* Delete Button Style */
+.deleteBtn {
+  background-color: var(--red-50);
+  color: var(--white);
+  padding: 0.4rem 0.75rem;
+  border: none;
+  border-radius: var(--borderRadius-50);
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.deleteBtn:hover {
+  background-color: var(--red-100);
+}
+
+
+/* Responsive design
+
+  When the screen is mobile-friendly (max-width: 768px),
+  the Email column in the table (both header and body) will be hidden.
+*/
+@media (max-width: 768px) {
+thead th:nth-child(3),
+  tbody td:nth-child(3) {
+    display: none;
+  }
 }
