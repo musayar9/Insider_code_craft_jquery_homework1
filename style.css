@@ -114,7 +114,6 @@ form .form-content {
 .form-content .form-item {
   display: flex;
   flex-direction: column;
-
   gap: 0.3rem;
   width: 100%;
 }
@@ -215,7 +214,6 @@ font-weight: 600;
 font-size: 1rem;
 padding: 0.875rem;
 text-align: right;
-
 }
 
 th,
