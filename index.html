@@ -3,6 +3,8 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="shortcut icon" href="./images/favicon.ico" type="image/x-icon" />
+    <link rel="icon" href="./images/favicon.ico" type="image/x-icon" />
     <title>Student List</title>
     <link rel="stylesheet" href="style.css" />
   </head>
@@ -14,7 +16,6 @@
     <div class="container">
       <!-- Form Field -->
       <form type="submit" id="studentForm">
-      
         <div class="form-content">
           <div class="form-item">
             <label for="name">Firstname</label>
@@ -111,6 +112,17 @@
           </tr>
         </thead>
         <tbody id="studentTableBody"></tbody>
+        <tfoot>
+          <tr>
+            <td
+              colspan="6"
+              id="studentCount"
+            
+            >
+              Total Students: 0
+            </td>
+          </tr>
+        </tfoot>
       </table>
     </div>
 

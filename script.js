@@ -32,11 +32,12 @@ $(function () {
 
   // Table body variable has been defined
   const studentTableBody = $("#studentTableBody");
-
+  const studentCount = $("#studentCount");
   // When the page first loads, the data will be added to the table
   function renderList() {
     studentTableBody.empty();
     let studentListHtml = null;
+    studentCount.text( `Total Students:  ${studentData.length}`);
     for (let student of studentData) {
       studentListHtml = `
                       <tr class="list-item">

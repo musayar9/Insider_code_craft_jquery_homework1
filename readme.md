@@ -1,5 +1,9 @@
 # Student Management Application
 
+
+## Live Demo: [Application Demo](https://students-application.netlify.app/)
+
+
 ## Description
 
 This application allows users to add student information including **first name**, **last name**, **email**, **class**, and **gender**, and display the students in a table. Users can:
@@ -26,8 +30,8 @@ The project is developed using **HTML**, **CSS**, **JavaScript**, and **jQuery**
 
 ## Technologies Used
 
-- HTML5
-- CSS3 (with CSS variables and responsive media queries)
+- HTML
+- CSS 
 - JavaScript (ES6+)
 - jQuery
 
@@ -68,3 +72,17 @@ cd Insider_code_craft_jquery_homework1
 ### 3. Open in Browser
 
 You can open the `index.html` file by double-clicking it or using a live server (e.g., VSCode Live Server).
+
+
+
+---
+
+##  Resources
+
+* [HTML Tables – W3Schools](https://www.w3schools.com/html/html_tables.asp)  
+
+* [jQuery .on() Method Documentation – jQuery API](https://api.jquery.com/on/#on-events-selector-data-handler)
+  Official documentation for handling events in jQuery using the `.on()` method.
+
+* [jQuery Tutorial – W3Schools](https://www.w3schools.com/jquery/default.asp)
+
